@@ -1,6 +1,6 @@
 
 # ReadWell
-A Full Stack E-Commerce Website to buy and sell your favourite mangas and light novels\
+A Full Stack E-Commerce Website to buy and sell your favourite mangas and light novels
 
 ## Features/Functionalities
 - Authentication (Log in and Sign Up)
@@ -29,4 +29,4 @@ A Full Stack E-Commerce Website to buy and sell your favourite mangas and light 
 **Orders Page**
     ![Orders Page](https://i.imgur.com/QsL6qQz.png)\
 **User's Profile**
-    ![User's Profile](https://i.imgur.com/s5TOZil.png)
+    ![User's Profile](https://i.imgur.com/s5TOZil.png)\
