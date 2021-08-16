@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= docTitle %></title>
+    <link rel="stylesheet" href="/css/add-product.css" />
+  </head>
+  <body>
+    <main>
+      <div id="form-box">
+        <h2><% if (editing) { %>Edit exising volume<% } else { %>Add new volume to existing series<% } %></h2>
+        <form
+          action="/admin<% if (editing) { %>/edit-volume<% } else { %>/add-volume<% } %>"
+          method="POST"
+        >
+          <div class="info-field__select">
+            <% if (!editing) { %>
+            <label for="seriesName">Series Name</label><br />
+            <select name="seriesName" required>
+              <option value="">Choose Series Name</option>
+              <% for (let item of series) { %>
+              <option value="<%= item.title %>"><%= item.title %></option>
+              <% } %>
+            </select>
+            <% } %>
+          </div>
+          <div class="info-field">
+            <input
+              type="text"
+              name="number"
+              placeholder=" "
+              required
+              value="<% if (editing) { %><%= volume.number %><% } %>"
+            />
+            <label for="number">
+              <span>Volume No.</span>
+            </label>
+          </div>
+          <div class="info-field">
+            <input
+              type="text"
+              name="pages"
+              placeholder=" "
+              required
+              value="<% if (editing) { %><%= volume.pages %><% } %>"
+            />
+            <label for="pages">
+              <span>Pages</span>
+            </label>
+          </div>
+          <div class="info-field">
+            <input
+              type="text"
+              name="price"
+              placeholder=" "
+              required
+              value="<% if (editing) { %><%= volume.price %><% } %>"
+            />
+            <label for="price">
+              <span>Price</span>
+            </label>
+          </div>
+          <div class="info-field">
+            <input
+              type="text"
+              name="isbn"
+              placeholder=" "
+              required
+              value="<% if (editing) { %><%= volume.isbn %><% } %>"
+            />
+            <label for="isbn">
+              <span>ISBN</span>
+            </label>
+          </div>
+          <div class="info-field">
+            <input
+              type="text"
+              name="cover"
+              placeholder=" "
+              required
+              value="<% if (editing) { %><%= volume.cover %><% } %>"
+            />
+            <label for="cover">
+              <span>Volume Cover</span>
+            </label>
+          </div>
+          <label for="description">Volume Description</label><br />
+          <textarea name="description" required><% if (editing) { %><%= volume.description %><% } %></textarea><br />
+          <label for="chaptersCovered">Chapters Covered</label><br />
+          <textarea name="chaptersCovered" required><% if (editing) { %><%= volume.chaptersCovered.join('<->') %><% } %></textarea>
+          <% if (editing) { %>
+          <input type="hidden" value="<%= series._id %>" name="seriesId" />
+          <input type="hidden" value="<%= volume._id %>" name="volumeId" />
+          <% } %>
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+          <button type="submit">
+            <% if (editing) { %>Edit Volume<% } else { %>Add Volume<% } %>
+          </button>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>

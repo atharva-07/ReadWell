@@ -1,0 +1,51 @@
+  <%- include('../includes/head.ejs') %>
+  <link rel="stylesheet" href="/css/cart.css">
+  <script src="/script/home.js" defer></script>  
+  </head>
+
+  <body>
+    <%- include('../includes/navigation.ejs') %>
+    <main>
+      <h1 id="cart-header">Cart Items</h1>
+      <% if (volumes.length > 0) { %>
+        <div id="cart">
+          <% for (let item of volumes) {
+            let seriesTitleAddr = item.series.title.toLowerCase();
+            seriesTitleAddr = seriesTitleAddr.replace(/ /g, '-') %>
+            <div class="cart-item">
+              <div class="cart-item__image">
+                <a href="/shop/volume/<%= item.series._id %>/<%= item.volume._id %>/<%= seriesTitleAddr %>/<%= item.volume.number %>"><img
+                  src="<%= item.volume.cover %>"
+                  alt="<%= item.series.title %>"
+                /></a>
+              </div>
+              <div class="cart-item__data">
+                <h2><%= item.series.title %> - Volume <%= item.volume.number %></h2>
+                <h3>Quantity: <%= item.quantity %></h3>
+                <form action="/delete-cart-item" method="POST">
+                  <input type="hidden" value="<%= item.volume._id %>" name="volumeId">
+                  <input type="hidden" value="<%= item.volume.price %>" name="volumePrice">
+                  <input type="hidden" value="<%= item.quantity %>" name="volumeQty">
+                  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                  <button type="submit" class="negative">Delete</button>
+                </form>
+              </div>
+              <div class="cart-item__price"><h2>&#8377; <%= (item.volume.price * item.quantity).toFixed(2) %></h2></div>
+            </div>
+          <% } %>
+          <div id="order-now">
+            <form action="/place-order" method="POST">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+              <button type="submit" class="positive">Order Now</button>
+            </form>
+          </div>
+        </div>
+      <% } else { %>
+        <h1 id="no-items">Your Cart is empty</h1>
+      <% } %>
+      <div id="total-price">
+        <h3>Total Payable Amount:</h3>
+        <h2>&#8377; <%= totalPrice.toFixed(2) %></h2>
+      </div>
+    </main>
+    <%- include('../includes/end.ejs') %>

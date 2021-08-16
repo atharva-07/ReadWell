@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= docTitle %></title>
+    <link rel="stylesheet" href="/css/add-product.css" />
+  </head>
+  <body>
+    <main>
+      <div id="form-box">
+        <h2>
+          <% if (editing) { %>Edit Series<% } else { %>Add New Series<% } %>
+        </h2>
+        <form
+          action="/admin<% if (editing) { %>/edit-series<% } else { %>/add-series<% } %>"
+          method="POST"
+        >
+          <div class="info-field">
+            <input
+              type="text"
+              name="title"
+              placeholder=" "
+              autocomplete="off"
+              required
+              value="<% if (editing) { %><%= series.title %><% } %>"
+            />
+            <label for="title">
+              <span>Title</span>
+            </label>
+          </div>
+          <div class="info-field">
+            <input
+              type="text"
+              name="author"
+              placeholder=" "
+              required
+              value="<% if (editing) { %><%= series.author %><% } %>"
+            />
+            <label for="author">
+              <span>Author</span>
+            </label>
+          </div>
+          <div class="info-field">
+            <input
+              type="text"
+              name="cover"
+              placeholder=" "
+              required
+              value="<% if (editing) { %><%= series.cover %><% } %>"
+            />
+            <label for="cover">
+              <span>Series Cover</span>
+            </label>
+          </div>
+          <div class="info-field">
+            <input
+              type="text"
+              name="megaCover"
+              placeholder=" "
+              required
+              value="<% if (editing) { %><%= series.megaCover %><% } %>"
+            />
+            <label for="megaCover">
+              <span>Series Mega Cover</span>
+            </label>
+          </div>
+          <label for="description">Series Description</label><br />
+          <textarea name="description" required><% if (editing) { %><%= series.description %><% } %></textarea>
+          <div class="info-field__select">
+            <p>Category</p>
+            <input type="radio" name="category" value="Manga" required <% if
+            (editing) { if (series.category === 'Manga') { %>checked<% } } %>/>
+            <label for="category">Manga</label>
+            <input type="radio" name="category" value="Light Novel" required <%
+            if (editing) { if (series.category === 'Light Novel') { %>checked<%
+            } } %>/>
+            <label for="category">Light Novel</label>
+          </div>
+          <div class="info-field__checkboxes">
+            <p>Genre</p>
+            <div class="info-field__checkboxes___checkbox">
+              <input type="checkbox" name="genres" value=" Action" <% if
+              (editing && series.genres.includes(" Action")) { %>checked<% }
+              %>/>
+              <label for="action">Action</label>
+            </div>
+            <div class="info-field__checkboxes___checkbox">
+              <input type="checkbox" name="genres" value=" Comedy" <% if
+              (editing && series.genres.includes(" Comedy")) { %>checked<% }
+              %>/>
+              <label for="comedy">Comedy</label>
+            </div>
+            <div class="info-field__checkboxes___checkbox">
+              <input type="checkbox" name="genres" value=" Drama" <% if (editing
+              && series.genres.includes(" Drama")) { %>checked<% } %>/>
+              <label for="drama">Drama</label>
+            </div>
+            <div class="info-field__checkboxes___checkbox">
+              <input type="checkbox" name="genres"" value=" Ecchi" <% if
+              (editing && series.genres.includes(" Ecchi")) { %>checked<% } %>/>
+              <label for="ecchi">Ecchi</label>
+            </div>
+            <div class="info-field__checkboxes___checkbox">
+              <input type="checkbox" name="genres" value=" Fantasy" <% if
+              (editing && series.genres.includes(" Fantasy")) { %>checked<% }
+              %>/>
+              <label for="fantasy">Fantasy</label>
+            </div>
+            <div class="info-field__checkboxes___checkbox">
+              <input type="checkbox" name="genres" value=" Harem" <% if (editing
+              && series.genres.includes(" Harem")) { %>checked<% } %>/>
+              <label for="harem">Harem</label>
+            </div>
+            <div class="info-field__checkboxes___checkbox">
+              <input type="checkbox" name="genres" value=" Mystery" <% if
+              (editing && series.genres.includes(" Mystery")) { %>checked<% }
+              %>/>
+              <label for="mystery">Mystery</label>
+            </div>
+            <div class="info-field__checkboxes___checkbox">
+              <input type="checkbox" name="genres" value=" Psychological" <% if
+              (editing && series.genres.includes(" Psychological")) {
+              %>checked<% } %>/>
+              <label for="psychological">Psychological</label>
+            </div>
+            <div class="info-field__checkboxes___checkbox">
+              <input type="checkbox" name="genres" value=" Romance" <% if
+              (editing && series.genres.includes(" Romance")) { %>checked<% }
+              %>/>
+              <label for="romance">Romance</label>
+            </div>
+            <div class="info-field__checkboxes___checkbox">
+              <input type="checkbox" name="genres" value=" Sci-Fi" <% if
+              (editing && series.genres.includes(" Sci-Fi")) { %>checked<% }
+              %>/>
+              <label for="sci-fi">Sci-Fi</label>
+            </div>
+            <div class="info-field__checkboxes___checkbox">
+              <input type="checkbox" name="genres" value=" Shounen" <% if
+              (editing && series.genres.includes(" Shounen")) { %>checked<% }
+              %>/>
+              <label for="shounen">Shounen</label>
+            </div>
+            <div class="info-field__checkboxes___checkbox">
+              <input type="checkbox" name="genres" value=" Slice of Life" <% if
+              (editing && series.genres.includes(" Slice of Life")) {
+              %>checked<% } %>/>
+              <label for="slice-of-life">Slice of Life</label>
+            </div>
+            <div class="info-field__checkboxes___checkbox">
+              <input type="checkbox" name="genres" value=" Sports" <% if
+              (editing && series.genres.includes(" Sports")) { %>checked<% }
+              %>/>
+              <label for="sports">Sports</label>
+            </div>
+            <div class="info-field__checkboxes___checkbox">
+              <input type="checkbox" name="genres" value=" Supernatural" <% if
+              (editing && series.genres.includes(" Supernatural")) { %>checked<%
+              } %>/>
+              <label for="supernatural">Supernatural</label>
+            </div>
+          </div>
+          <% if (editing) { %>
+          <input type="hidden" value="<%= series._id %>" name="seriesId" />
+          <% } %>
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+          <button type="submit">
+            <% if (editing) { %>Edit Series<% } else { %>Add Series<% } %>
+          </button>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,76 @@
+#orders-list {
+  width: 84%;
+  margin: 0 auto;
+  margin-top: 6vh;
+  padding: 0.1rem;
+}
+
+.order {
+  border: 1px solid #a8a2f7;
+  border-radius: 5px;
+  margin: 5rem 2rem;
+}
+
+#order-header,
+#order-content,
+#order-footer {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  padding: 1rem;
+}
+
+#order-header,
+#order-footer {
+  color: rgb(255, 255, 255);
+  justify-content: space-between;
+  border-bottom: 2px solid #a8a2f7;
+  padding: 0;
+}
+
+#order-footer {
+  border: 0;
+  border-top: 2px solid #a8a2f7;
+}
+
+#order-header > div,
+#order-footer > div {
+  font-size: 0.9rem;
+  margin: 0 2rem;
+  padding: 0;
+}
+
+.order-header__user > p {
+  display: inline;
+  padding-bottom: 1px;
+  border-bottom: 1px solid #c682fd;
+  color: #c682fd;
+}
+
+.order-content__image {
+  width: 8rem;
+  height: 12rem;
+  box-shadow: 2px 1px 4px rgba(136, 62, 233, 0.96);
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.order-content__data {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  width: calc(100% - 8rem);
+  padding: 1rem;
+  color: #ffffff;
+}
+
+.order-content__data > div {
+  margin: 0 1rem;
+}
+
+.order-content__data h3,
+.order-content__data h4 {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
+}

@@ -1,0 +1,47 @@
+#product-box {
+  color: #ffffff;
+  width: 90%;
+  margin: 0 auto;
+  padding: 3rem;
+}
+
+#product-box h1 {
+  color: #ffffff;
+  font-size: 2rem;
+  display: inline-block;
+  padding: 4px;
+  border-bottom: 4px solid #883ee9;
+}
+
+#product-box p {
+  font-size: 1.1rem;
+}
+
+#author {
+  display: inline;
+  padding-bottom: 2px;
+  border-bottom: 1px solid #c682fd;
+  color: #c682fd;
+}
+
+.volume-image,
+.volume-info,
+.volume-description,
+.volume-cc {
+  margin: 2.5rem 0;
+}
+
+.volume-image {
+  width: 20rem;
+  height: 30rem;
+  float: left;
+}
+
+.volume-info {
+  margin-right: 10rem;
+  float: right;
+}
+
+.volume-description {
+  clear: both;
+}

@@ -1,0 +1,78 @@
+  <%- include('../includes/head.ejs') %>
+  <link rel="stylesheet" href="/css/profile.css">
+  <script src="/script/home.js" defer></script>  
+  </head>
+
+  <body>
+    <%- include('../includes/navigation.ejs') %>
+    <main>
+      <div id="user">
+        <div class="one">
+          <div class="pfp-box">
+          <img src="/images/user/<% if (user.gender === 'Male') { %>user_male.png<% } else if (user.gender === 'Female') { %>user_female.png<% } else { %>user_unknown.png<% } %>" id="pfp" style="width: 160px; height: 160px;" alt="PFP">
+          <h2><%= user.name %></h2>
+        </div>
+        <h1>@<%= user.username %></h1>
+        </div>
+        <div class="two">
+          <div class="info-box">
+            <form id="form-box" action="/user/<%= user.username %>" method="POST">
+              <div class="info-field">
+                <input
+                  type="text"
+                  name="name"
+                  placeholder=" "
+                  autocomplete="off"
+                  value="<%= user.name %>"
+                  required
+                />
+                <label for="Name">
+                  <span>Name</span>
+                </label>
+              </div>
+              <div class="info-field">
+                <input
+                  type="text"
+                  name="contact"
+                  placeholder=" "
+                  autocomplete="off"
+                  value="<%= user.contact %>"
+                  required
+                />
+                <label for="contact">
+                  <span>Contact Number</span>
+                </label>
+              </div>
+              <div class="info-field">
+                <input
+                  type="text"
+                  name="address"
+                  placeholder=" "
+                  value="<%= user.address %>"
+                  required
+                />
+                <label for="address">
+                  <span>Address</span>
+                </label>
+              </div>
+              <div class="space">
+                <p>Gender</p>
+                <input type="radio" name="gender" value="Male" required 
+                <% if (user.gender === 'Male') { %>checked<% } %>  />
+                <label for="gender">Male</label>
+                <input type="radio" name="gender" value="Female" required 
+                <% if (user.gender === 'Female') { %>checked<% } %>  />
+                <label for="gender">Female</label>
+              </div>
+              <div class="space">
+                <p>Date of Birth</p>
+                <input class="date-input" type="date" name="dob" <% if (user.dob) { %>disabled<% } else { %> required<% } %>>
+              </div>
+              <button class="positive" type="submit">Save Changes</button>
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+    <%- include('../includes/end.ejs') %>

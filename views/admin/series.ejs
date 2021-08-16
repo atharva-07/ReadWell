@@ -1,0 +1,39 @@
+<%- include('../includes/head.ejs') %>
+<script src="/script/home.js" defer></script>
+</head>
+
+<body>
+  <%- include('../includes/navigation.ejs') %>
+  <main>
+    <% if (series.length > 0) { %>
+      <div class="container">
+        <% for (let product of series) { 
+          let seriesTitleAddr = product.title.toLowerCase();
+          seriesTitleAddr = seriesTitleAddr.replace(/ /g, '-'); %>
+          <div class="card">
+            <a href="/admin/series/<%= product._id %>/<%= seriesTitleAddr %>">
+              <img
+                src="<%= product.cover %>"
+                alt="<%= product.title %>"
+              />
+              <div class="overlay"></div>
+              <div class="content">
+                <h3><%= product.title %></h3>
+                <div class="card-actions">
+                  <a href="/admin/edit-series/<%= product._id %>/<%= seriesTitleAddr %>?edit=true" class="btn">Edit</a>
+                  <form action="/admin/delete-series" method="POST">
+                    <input type="hidden" value="<%= product._id %>" name="seriesId">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <button class="btn" type="submit">Delete</button>
+                  </form>
+                </div>
+              </div>
+            </a>
+          </div> 
+        <% } %>
+      </div>
+    <% } else { %>
+      <h1>You have not added any series so far....</h1>
+    <% } %>
+  </main>
+  <%- include('../includes/end.ejs') %>

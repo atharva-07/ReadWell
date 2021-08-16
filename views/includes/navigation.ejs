@@ -1,0 +1,57 @@
+<header id="main-header">
+  <nav id="main-navbar">
+    <div class="logo">
+      <ul>
+        <li>
+          <a href="/"><h3 class="<%= path === '/home' ? 'active' : '' %>">Home</h3></a>
+        </li>
+      </ul>
+    </div>
+    <ul id="menu">
+      <% if (isAuthenticated) { %>
+        <li>
+          <a href="/shop"><h3 class="<%= path === '/shop' ? 'active' : '' %>">Shop</h3></a>
+        </li>
+        <li>
+          <a href="/cart"><h3 class="<%= path === '/cart' ? 'active' : '' %>">Cart</h3></a>
+        </li>
+        <li>
+          <a href="/orders"><h3 class="<%= path === '/orders' ? 'active' : '' %>">Orders</h3></a>
+        </li>
+        <% if (isAdmin) { %>
+          <li id="dropdown">
+            <h3>Add</h3>
+            <div id="dropdown-content">
+              <a href="/admin/add-series"><h3 class="<%= path === '/admin/add-series' ? 'active' : '' %>">Add Series</h3></a>
+              <a href="/admin/add-volume"><h3 class="<%= path === '/admin/add-volume' ? 'active' : '' %>">Add Volume</h3></a>
+            </div>
+          </li>
+          <li>
+            <a href="/admin/series"><h3 class="<%= path === '/admin/series' ? 'active' : '' %>">Admin</h3></a>
+          </li>
+        <% } %>  
+      <% } %>
+    </ul>
+    <ul>
+      <% if (!isAuthenticated) { %>
+        <li>
+          <a href="/login"><h3>Log In</h3></a>
+        </li>
+        <li>
+          <a href="/signup"><h3>Sign Up</h3></a>
+        </li>
+      <% } else { %>
+        <li id="dropdown">
+          <h3 class="<%= path === '/account' ? 'active' : '' %>">My Account</h3>
+          <div id="dropdown-content">
+            <a href="/user/<%= username %>"><h3>Profile</h3></a>
+            <form action="/logout" method="POST" id="logout">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+              <button type="submit" id="logout-btn">Log Out</button>
+            </form>
+          </div>
+        </li>
+      <% } %>
+    </ul>
+  </nav>
+</header>

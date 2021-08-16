@@ -1,0 +1,42 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/series-desc.css">
+<script src="/script/series.js" defer></script>
+</head>
+
+<body>
+  <%- include('../includes/navigation.ejs') %> 
+  <div class="prod">
+    <img src="<%= series.megaCover %>" alt="<%= series.title %>" />
+    <div class="gradient"></div>
+    <div class="description">
+      <h1><%= series.title %></h1>
+      <p><%= series.description %></p>
+    </div>
+  </div>
+  <div class="series-info">
+    <h2>Story by: <%= series.author %></h2>
+    <h2>Volumes: <%= series.volumes.length %></h2>
+    <h2>Category: <%= series.category %></h2>
+  </div>
+    <main>
+      <%  let seriesTitleAddr = series.title.toLowerCase();
+      seriesTitleAddr = seriesTitleAddr.replace(/ /g, '-'); %>
+      <div class="container">
+        <% for (let item of series.volumes) { %>
+          <div class="card">
+            <a href="/shop/volume/<%= series._id %>/<%= item._id %>/<%= seriesTitleAddr %>/<%= item.number %>">
+              <img
+                src="<%= item.cover %>"
+                alt="Volume <%= item.number %> of <%= series.title %>"
+              />
+              <div class="overlay"></div>
+              <div class="content">
+                <h3>Volume <%= item.number %></h3>
+                <p><%= series.title %></p>
+              </div>
+            </a>
+          </div>
+        <% } %> 
+      </div>
+    </main>
+    <%- include('../includes/end.ejs') %>

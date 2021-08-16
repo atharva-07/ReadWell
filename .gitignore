@@ -1,0 +1,7 @@
+/node_modules
+/public/images/cover/
+/public/images/mega_cover
+/public/images/volumes
+/screenshots
+/.env
+/nodemon.json

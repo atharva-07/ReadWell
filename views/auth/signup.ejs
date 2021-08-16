@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= docTitle %></title>
+    <link rel="stylesheet" href="/css/auth.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+    />
+    <style>
+      .form-box {
+        margin: 15% 4%;
+      }
+    </style>
+    <script src="/script/auth.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <div class="modal">
+        <div class="one">
+          <div class="message">
+            <h1>
+              Join
+              <div id="logo">ReadWell</div>
+              today to buy and enjoy your favourite mangas and light novels.
+            </h1>
+          </div>
+        </div>
+        <div class="two">
+          <div class="form-box">
+            <h2>Sign Up</h2>
+            <p>Already a customer? <a href="/login">Login</a></p>
+            <form action="/signup" method="POST" novalidate>
+              <div class="info-field">
+                <input
+                  type="text"
+                  name="username"
+                  value="<%= oldInput.username %>"
+                  autocomplete="off"
+                  placeholder=" "
+                  required
+                />
+                <label for="username"><span>Username</span></label>
+              </div>
+              <i class="fas fa-info-circle helper" id="un-info-btn"></i>
+              <div id="un-info">
+                <h5>Username Rules</h5>
+                <p>
+                  Your username can't have these set of charcters {
+                  %?'";&,#!:^$>< }
+                </p>
+              </div>
+              <div class="info-field">
+                <input
+                  type="text"
+                  name="name"
+                  value="<%= oldInput.name %>"
+                  autocomplete="off"
+                  placeholder=" "
+                  required
+                />
+                <label for="name"><span>Name</span></label>
+              </div>
+              <div class="info-field">
+                <input
+                  type="email"
+                  name="email"
+                  value="<%= oldInput.email %>"
+                  autocomplete="on"
+                  placeholder=" "
+                  required
+                />
+                <label for="email"><span>Email</span></label>
+              </div>
+              <div class="info-field">
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  value="<%= oldInput.password %>"
+                  placeholder=" "
+                  maxlength="20"
+                  required
+                />
+                <label for="password"><span>Password</span></label>
+              </div>
+              <i class="fas fa-info-circle helper" id="pw-info-btn"></i>
+              <div id="pw-info">
+                <h5>Password Rules</h5>
+                <ul>
+                  <li><p>Minimum 8 characters</p></li>
+                  <li><p>Maximum 20 characters</p></li>
+                  <li><p>At least one uppercase character</p></li>
+                  <li><p>At least one lowercase character</p></li>
+                  <li><p>At least one digit</p></li>
+                  <li><p>At least one special character</p></li>
+                </ul>
+              </div>
+              <i class="fas fa-eye helper2" id="pw-eye-btn"></i>
+              <div class="info-field">
+                <input
+                  type="password"
+                  name="confirmPassword"
+                  value="<%= oldInput.confirmPassword %>"
+                  placeholder=" "
+                  required
+                />
+                <label for="confirmPassword"
+                  ><span>Confirm Password</span></label
+                >
+              </div>
+              <button type="submit">Sign Up</button>
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+            </form>
+            <% if (errorMessage) { %>
+            <div class="error"><%= errorMessage %></div>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

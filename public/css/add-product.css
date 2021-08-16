@@ -1,0 +1,130 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+main {
+  width: 70%;
+  padding: 2rem;
+  margin: 0 auto;
+}
+
+#form-box {
+  border: 2px solid #000000;
+}
+
+#form-box h2 {
+  padding: 0;
+  margin: 0;
+  margin-top: 1rem;
+  text-align: center;
+  text-transform: uppercase;
+  border-bottom: 5px solid #493df3;
+}
+
+form {
+  padding: 2rem;
+  width: 100%;
+}
+
+.info-field {
+  position: relative;
+  width: 90%;
+  height: 50px;
+  margin: 1.2rem 0;
+  overflow: hidden;
+}
+
+.info-field__checkboxes,
+textarea {
+  width: 90%;
+  margin: 0.5rem 0;
+}
+
+textarea {
+  font-size: 1rem;
+  height: 8rem;
+  padding: 0.8rem;
+}
+
+.info-field__checkboxes___checkbox {
+  display: inline-block;
+  margin: 0.2rem 0.5rem;
+}
+
+.info-field input {
+  font-size: 1rem;
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  padding-top: 20px;
+}
+
+.info-field label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  border-bottom: 1px solid #000000;
+}
+
+.info-field label::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-bottom: 3px solid rgb(111, 31, 216);
+  transform: translateX(-100%);
+  transition: transform 0.3 ease;
+}
+
+span {
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  transition: all 0.3s ease;
+}
+
+.info-field input:focus + label span,
+.info-field input:not(:placeholder-shown) + label span {
+  transform: translateY(-120%);
+  color: rgb(137, 34, 206);
+}
+
+.info-field input:focus + label::after,
+.info-field:not(:placeholder-shown) + label::after {
+  transform: translateX(0%);
+  transition: transform 0.5s;
+}
+
+form button {
+  width: 8rem;
+  margin: 1rem auto;
+  border: 2px solid #000000;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 10px 8px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: linear-gradient(
+    90deg,
+    rgb(84, 113, 245) 16%,
+    rgb(87, 82, 240) 76%
+  );
+  cursor: pointer;
+}

@@ -1,0 +1,38 @@
+  <%- include('../includes/head.ejs') %>
+  <script src="/script/home.js" defer></script>
+  </head>
+
+  <body>
+    <%- include('../includes/navigation.ejs') %>
+    <div class="screen">
+      <h1>
+        Create your <span id="logo">ReadWell</span> account to buy and enjoy your
+        favourite mangas and novels.
+      </h1>
+    </div>
+    <main id="home-main">
+      <% if (series.length > 0) { %>
+        <div class="container">
+          <% for (let product of series) { 
+            let seriesTitleAddr = product.title.toLowerCase();
+            seriesTitleAddr = seriesTitleAddr.replace(/ /g, '-') %>
+            <div class="card">
+              <a href="/shop/series/<%= product._id %>/<%= seriesTitleAddr %>">
+                <img
+                  src="<%= product.cover %>"
+                  alt="<%= product.title %>"
+                />
+                <div class="overlay"></div>
+                <div class="content">
+                  <h3><%= product.title %></h3>
+                  <p><%= product.genres %></p>
+                </div>
+              </a>
+            </div> 
+          <% } %>
+        </div>
+      <% } else { %>
+        <h1>No Products Found</h1>
+      <% } %>
+    </main>
+    <%- include('../includes/end.ejs') %>

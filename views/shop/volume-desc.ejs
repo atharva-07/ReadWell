@@ -1,0 +1,48 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/volume-desc.css">
+<script src="/script/home.js" defer></script>
+</head>
+
+<body>
+  <%- include('../includes/navigation.ejs') %>
+  <main>
+    <div id="product-box">
+      <div class="volume-image">
+        <img
+          src="<%= volume.cover %>"
+          alt="<%= volume.number %>"
+        />
+      </div>
+      <div class="volume-info">
+        <h1>Volume <%= volume.number %> of <%= series.title %></h1>
+        <div id="information">
+          <p>Story by&ensp;<span id="author"><%= series.author %></span></p>
+          <p>ISBN:&ensp;<%= volume.isbn %></p>
+          <p>Category:&ensp;<%= series.category %></p>
+          <p>Pages Count:&ensp;<%= volume.pages %></p>
+          <p>Price:&ensp;&#8377; <%= volume.price %></p>
+          <form action="/cart" method="POST">
+            <input type="hidden" value="<%= volume._id %>" name="volumeId">
+            <input type="hidden" value="<%= series.title %>" name="seriesName">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <button type="submit" class="positive">Add to Cart</button>
+          </form>
+        </div>
+      </div>
+      <div class="volume-description">
+        <h1>Description</h1>
+        <p>
+          <%= volume.description %>
+        </p>
+      </div>
+      <div class="volume-cc">
+        <h1>Chapters Covered</h1>
+        <div id="chapters">
+          <% for (let chapter of volume.chaptersCovered) { %>
+            <p><%= chapter %></p>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </main>
+  <%- include('../includes/end.ejs') %>

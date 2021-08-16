@@ -1,0 +1,77 @@
+#form-box {
+  padding-top: 20vh;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.info-field {
+  position: relative;
+  width: 90%;
+  height: 50px;
+  margin: 1.2rem 0;
+  overflow: hidden;
+}
+
+.info-field input {
+  background-color: #121212;
+  color: #ccc9c9;
+  font-size: 1rem;
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  padding-top: 20px;
+}
+
+.info-field label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  color: #bec4f5;
+}
+
+.info-field label::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-bottom: 3px solid rgb(111, 31, 216);
+  transform: translateX(-100%);
+  transition: transform 0.3 ease;
+}
+
+span {
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  transition: all 0.3s ease;
+}
+
+.info-field input:focus + label span,
+.info-field input:not(:placeholder-shown) + label span {
+  transform: translateY(-120%);
+  color: #bec4f5;
+}
+
+.info-field input:focus + label::after,
+.info-field:not(:placeholder-shown) + label::after {
+  transform: translateX(0%);
+  transition: transform 0.5s;
+}
+
+#error {
+  border-radius: 10px;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  background-color: #6200ff;
+  width: 30%;
+  margin: 0 auto;
+  margin-top: 2rem;
+  padding: 0.5rem 0.6rem;
+}

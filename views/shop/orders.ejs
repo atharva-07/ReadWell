@@ -1,0 +1,61 @@
+  <%- include('../includes/head.ejs') %>
+  <link rel="stylesheet" href="/css/orders.css">
+  <script src="/script/home.js" defer></script>
+  </head>
+
+  <body>
+    <%- include('../includes/navigation.ejs') %>
+    <main>
+      <% if (orders.length <= 0) { %>
+        <h1 id="no-items">You have not placed any orders so far....</h1>
+      <% } else { %>
+        <div id="orders-list">
+        <% orders.forEach(order => { %>
+          <div class="order">
+            <div id="order-header">
+              <div class="order-header__id">
+                <h4>Order ID</h4>
+                <p><%= order.orderData.id %></p>
+              </div>
+              <div class="order-header__user">
+                <h4>Shipped to</h4>
+                <p><%= user.name %></p>
+              </div>
+              <div class="order-header__date">
+                <h4>Order Placed</h4>
+                <p><%= order.orderData.date %></p>
+              </div>
+            </div>
+            <% for (let product of order.productData) { 
+              let seriesTitleAddr = product.series.title.toLowerCase();
+              seriesTitleAddr = seriesTitleAddr.replace(/ /g, '-') %>
+              <div id="order-content">
+                <div class="order-content__image">
+                  <a href="/shop/volume/<%= product.series._id %>/<%=  product.volume._id %>/<%= seriesTitleAddr %>/<%= product.volume.number %>"><img
+                    src="<%= product.volume.cover %>"
+                    alt="<%= product.volume.number %>"
+                  /></a>
+                </div>
+                <div class="order-content__data">
+                  <div>
+                    <h3><%= product.series.title %> - Volume <%= product.volume.number %></h3>
+                    <h4>Quantity: <%= product.quantity %></h4>
+                  </div>
+                  <h3>&#8377; <%= product.volume.price %></h3>
+                </div>
+              </div>
+            <% } %>
+            <div id="order-footer">
+              <div class="order-footer__address">
+                <h4>Billing Address</h4>
+                <p><%= user.address %></p>
+              </div>
+              <div class="order-footer__price">
+                <h1>&#8377; <%= order.orderData.totalPrice %></h1>
+              </div>
+            </div>
+          </div>
+        <% }); %>
+      <% } %>
+    </main>
+    <%- include('../includes/end.ejs') %>
