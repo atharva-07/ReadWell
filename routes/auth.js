@@ -39,7 +39,9 @@ router.post(
         return true;
       }
     ),
-    body('email', 'Please enter a valid email').isEmail().normalizeEmail(),
+    body('email', 'Please enter a valid email')
+      .isEmail()
+      .normalizeEmail({ gmail_remove_dots: false }),
     body('password', 'Your password is not strong enough').custom(
       (value, { req }) => {
         // Minimum 8 characters {>>8,20}
