@@ -10,7 +10,9 @@ router.get('/login', authController.getLogin);
 
 router.post(
   '/login',
-  body('email', 'Please enter a valid email').isEmail().normalizeEmail(),
+  body('email', 'Please enter a valid email')
+    .isEmail()
+    .normalizeEmail({ gmail_remove_dots: false }),
   authController.postLogin
 );
 
@@ -46,7 +48,8 @@ router.post(
         // At least one lowercase character (?=.*[a-z])
         // At least one digit (?=.*\d)
         // At least one special character (?=.*[a-zA-Z >>!#$@^%&? "<<])[a-zA-Z0-9 >>!#$@^%&?<< ]
-        const RegEx = /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[a-zA-Z!#$@^%&? "])[a-zA-Z0-9!#$@^%&?]{8,20}$/;
+        const RegEx =
+          /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[a-zA-Z!#$@^%&? "])[a-zA-Z0-9!#$@^%&?]{8,20}$/;
         if (!value.match(RegEx)) {
           return false;
         }
@@ -84,7 +87,8 @@ router.post(
   [
     body('password', 'Your password is not strong enough').custom(
       (value, { req }) => {
-        const RegEx = /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[a-zA-Z!#$@^%&? "])[a-zA-Z0-9!#$@^%&?]{8,20}$/;
+        const RegEx =
+          /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[a-zA-Z!#$@^%&? "])[a-zA-Z0-9!#$@^%&?]{8,20}$/;
         if (!value.match(RegEx)) {
           return false;
         }
